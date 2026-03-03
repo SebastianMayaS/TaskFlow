@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskFlow — Gestión de Tareas</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="bg-grid"></div>
+
+  <header class="topbar">
+    <div class="topbar-brand">
+      <div class="brand-dot"></div>
+      <span class="brand-name">TaskFlow</span>
+    </div>
+
+    <div class="topbar-stats">
+      <div class="stat-chip">
+        <span class="stat-num" id="statTotal">0</span>
+        <span class="stat-lbl">Total</span>
+      </div>
+      <div class="stat-chip chip-verde">
+        <span class="stat-num" id="statCompletadas">0</span>
+        <span class="stat-lbl">Listas</span>
+      </div>
+      <div class="stat-chip chip-rojo">
+        <span class="stat-num" id="statPendientes">0</span>
+        <span class="stat-lbl">Pendientes</span>
+      </div>
+    </div>
+
+    <div class="topbar-reloj" id="reloj">--:--:--</div>
+  </header>
+
+  <main class="layout">
+
+    <aside class="panel-form">
+
+      <h2 class="panel-titulo">Nueva Tarea</h2>
+
+      <form id="formTarea" class="formulario" novalidate>
+
+
+        <div class="campo">
+          <label for="inputDescripcion" class="campo-label">Descripción *</label>
+          <textarea
+            id="inputDescripcion"
+            class="campo-input textarea"
+            placeholder="¿Qué hay que hacer?"
+            rows="3"
+            required
+          ></textarea>
+
+          <span class="char-counter" id="charCounter">0 / 120</span>
+        </div>
+
+        <div class="campo">
+          <label for="selectPrioridad" class="campo-label">Prioridad</label>
+          <select id="selectPrioridad" class="campo-input">
+            <option value="baja">🟢 Baja</option>
+            <option value="media" selected>🟡 Media</option>
+            <option value="alta">🔴 Alta</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="inputFecha" class="campo-label">Fecha límite</label>
+          <input type="date" id="inputFecha" class="campo-input">
+        </div>
+
+        <button type="submit" class="btn-agregar" id="btnAgregar">
+          <span id="btnTexto">＋ Agregar Tarea</span>
+        </button>
+
+      </form>
+
+      <div class="separador"></div>
+
+      <div class="acciones-api">
+        <p class="acciones-titulo">API & Almacenamiento</p>
+
+
+        <button class="btn-api" id="btnCargarAPI" onclick="gestorTareas.cargarDesdeAPI()">
+          ↓ Cargar desde API
+        </button>
+        <button class="btn-api btn-api-outline" id="btnGuardarStorage" onclick="gestorTareas.guardarEnStorage()">
+          💾 Guardar en Storage
+        </button>
+        <button class="btn-api btn-api-outline" id="btnCargarStorage" onclick="gestorTareas.cargarDesdeStorage()">
+          📂 Cargar desde Storage
+        </button>
+        <button class="btn-api btn-api-danger" onclick="gestorTareas.limpiarTodo()">
+          🗑 Limpiar todo
+        </button>
+      </div>
+    </aside>
+
+    <section class="panel-lista">
+      <div class="filtros-bar">
+        <h2 class="panel-titulo">Mis Tareas</h2>
+        <div class="filtros-chips">
+          <button class="filtro-chip activo" data-filtro="todas" onclick="gestorTareas.filtrar('todas', this)">Todas</button>
+          <button class="filtro-chip" data-filtro="pendiente" onclick="gestorTareas.filtrar('pendiente', this)">Pendientes</button>
+          <button class="filtro-chip" data-filtro="completada" onclick="gestorTareas.filtrar('completada', this)">Completadas</button>
+        </div>
+      </div>
+      <div class="notificacion hidden" id="notificacion">
+        <span id="notificacionTexto"></span>
+      </div>
+      <div class="estado-vacio" id="estadoVacio">
+        <div class="vacio-icono">📋</div>
+        <p class="vacio-texto">Sin tareas aún.<br>¡Crea la primera!</p>
+      </div>
+      <ul class="lista-tareas" id="listaTareas"></ul>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

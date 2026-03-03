@@ -1,0 +1,460 @@
+/* ============================================================
+   TASKFLOW — style.css
+   Nuevo Estilo: Moderno minimal, oscuro, tipografía moderna, acentos índigo
+   ============================================================ */
+
+:root {
+  --bg:          #171923;
+  --bg-panel:    #23263a;
+  --bg-card:     #202233;
+  --bg-hover:    #282c3e;
+  --borde:       rgba(99,102,241,0.10);
+  --borde-hover: rgba(99,102,241,0.26);
+  --teal:        #818cf8;
+  --teal-dim:    rgba(129,140,248,0.12);
+  --teal-glow:   rgba(129,140,248,0.32);
+  --verde:       #22c55e;
+  --rojo:        #ef4444;
+  --amarillo:    #fbbf24;
+  --texto:       #f1f5f9;
+  --texto-dim:   #94a3b8;
+  --texto-muted: #64748b;
+  --radio:       14px;
+}
+
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--texto);
+  min-height: 100vh;
+  overflow-x: hidden;
+  letter-spacing: .01em;
+}
+
+/* ── Fondo con grid sutil ─────────────────────────────── */
+.bg-grid {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(129,140,248,0.060) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(129,140,248,0.055) 1px, transparent 1px);
+  background-size: 56px 56px;
+  opacity: 0.27;
+}
+
+/* ══ TOPBAR ═══════════════════════════════════════════════ */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.2rem 2.8rem;
+  background: rgba(23,25,35,0.97);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--borde);
+  box-shadow: 0 4px 14px rgba(129,140,248,0.09);
+}
+
+.topbar-brand { display: flex; align-items: center; gap: 13px; }
+
+.brand-dot {
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 32px var(--teal-glow), 0 0 0 4px var(--teal-dim);
+  animation: pulseDot 1.2s cubic-bezier(.58,.11,.29,1.12) infinite;
+  border: 2px solid var(--bg-panel);
+}
+@keyframes pulseDot {
+  0%,100% { box-shadow: 0 0 8px var(--teal-glow), 0 0 0 0 var(--teal-dim);}
+  50%      { box-shadow: 0 0 36px var(--teal-glow), 0 0 0 6px var(--teal-dim);}
+}
+
+.brand-name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.45rem; letter-spacing: 1.5px; color: var(--texto);
+  font-weight: 800;
+  text-shadow: 0 2px 18px #151727;
+}
+
+.topbar-stats { display: flex; gap: 12px; }
+
+.stat-chip {
+  display: flex; align-items: center; gap: 7px;
+  padding: 6px 18px;
+  background: var(--bg-panel);
+  border: 1.5px solid var(--borde);
+  border-radius: 999px;
+  font-size: 0.93rem; font-weight: 600;
+  transition: border-color 0.18s,background 0.18s;
+  box-shadow: 0 3px 14px rgba(129,140,248,0.07);
+}
+.stat-chip:hover { border-color: var(--borde-hover); background: var(--bg-hover); }
+
+.stat-num { font-weight: 800; color: var(--teal); }
+.stat-lbl { color: var(--texto-muted); font-size: 0.85rem; }
+
+.chip-verde .stat-num { color: var(--verde); }
+.chip-rojo  .stat-num { color: var(--rojo); }
+
+.topbar-reloj {
+  font-family: 'Inter', monospace;
+  font-size: 1rem; letter-spacing: 2.6px;
+  color: var(--texto-muted);
+  background: var(--bg-panel);
+  padding: 0.38em 1.3em;
+  border-radius: 18px;
+}
+
+/* ══ LAYOUT 2 COLUMNAS ════════════════════════════════════ */
+.layout {
+  position: relative; z-index: 1;
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 0;
+  min-height: calc(100vh - 61px);
+}
+
+/* ══ PANEL IZQUIERDO ══════════════════════════════════════ */
+.panel-form {
+  border-right: 1.5px solid var(--borde);
+  padding: 2.5rem 1.8rem;
+  display: flex; flex-direction: column; gap: 2.2rem;
+  background: var(--bg-panel);
+  position: sticky; top: 61px; height: calc(100vh - 61px);
+  overflow-y: auto;
+  box-shadow: 2px 0 18px rgba(0,0,0,0.085);
+}
+
+.panel-titulo {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.16rem; font-weight: 700;
+  color: var(--teal); letter-spacing: 0.7px;
+}
+
+/* ── Formulario ───────────────────────────────────────── */
+.formulario { display: flex; flex-direction: column; gap: 1.65rem; }
+
+.campo { display: flex; flex-direction: column; gap: 8px; }
+
+.campo-label {
+  font-size: 0.93rem; font-weight: 700;
+  color: var(--texto-dim); letter-spacing: 1.4px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.campo-input {
+  width: 100%;
+  background: var(--bg-card);
+  border: 1.5px solid var(--borde);
+  border-radius: var(--radio);
+  padding: 15px 18px;
+  color: var(--texto);
+  font-family: 'Inter', sans-serif;
+  font-size: 1.025rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.22s;
+  resize: none;
+  box-shadow: 0 1px 6px rgba(40,48,95,0.13);
+}
+.campo-input:focus {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 4px var(--teal-dim);
+}
+.campo-input::placeholder { color: var(--texto-muted); font-size: 0.98em; opacity:0.8; }
+
+.textarea { min-height: 104px; }
+
+.char-counter {
+  font-size: 0.79rem; color: var(--texto-muted);
+  text-align: right; margin-top: 5px;
+  transition: color 0.2s;
+}
+.char-counter.alerta { color: var(--rojo); font-weight: 600; }
+
+/* Botón principal */
+.btn-agregar {
+  width: 100%; padding: 15px 0;
+  background: linear-gradient(90deg,var(--teal),#6366f1);
+  border: none; border-radius: var(--radio);
+  color: #f7f7fa; font-family: 'Montserrat', sans-serif;
+  font-size: 1.02rem; font-weight: 900; cursor: pointer;
+  transition: all 0.18s cubic-bezier(.5,.1,.26,1.12);
+  box-shadow: 0 4px 20px var(--teal-dim);
+  letter-spacing: 0.6px;
+}
+.btn-agregar:hover {
+  background: linear-gradient(90deg,#6366f1,var(--teal));
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 9px 24px var(--teal-glow);
+}
+.btn-agregar:active { transform: translateY(1px) scale(0.98); }
+.btn-agregar:disabled { opacity: 0.38; cursor: not-allowed; transform: none; background: #36364a; color: #9091b2; }
+
+/* Separador */
+.separador {
+  height: 2px; background: var(--borde); margin: 0 -1.8rem;
+}
+
+/* Acciones API */
+.acciones-api { display: flex; flex-direction: column; gap: 11px; }
+
+.acciones-titulo {
+  font-size: 0.83rem; font-weight: 900;
+  letter-spacing: 1.1px; color: var(--texto-muted);
+  text-transform: uppercase; margin-bottom: 4px;
+}
+
+.btn-api {
+  width: 100%; padding: 13px 0;
+  background: linear-gradient(100deg, var(--teal), #6366f1 80%);
+  border: none; border-radius: var(--radio);
+  color: #f7fafd; font-family: 'Montserrat',sans-serif;
+  font-size: 0.98rem; font-weight: 900; cursor: pointer;
+  transition: all 0.19s cubic-bezier(.5,.1,.26,1.03);
+}
+.btn-api:hover { background: linear-gradient(90deg,#6366f1,var(--teal)); filter: brightness(1.07); transform: translateY(-2px) scale(1.03); }
+
+.btn-api-outline {
+  background: transparent;
+  border: 1.5px solid var(--borde);
+  color: var(--teal);
+  font-weight: 800;
+}
+.btn-api-outline:hover {
+  background: var(--bg-hover);
+  border-color: var(--borde-hover);
+  color: var(--texto);
+  transform: translateY(-2px);
+}
+
+.btn-api-danger {
+  background: transparent;
+  border: 1.5px solid rgba(239,68,68,0.3);
+  color: var(--rojo);
+  font-weight: 800;
+}
+.btn-api-danger:hover {
+  background: rgba(239,68,68,0.13);
+  border-color: var(--rojo);
+  color: #fff;
+  transform: translateY(-2px) scale(1.03);
+}
+
+/* ══ PANEL DERECHO ════════════════════════════════════════ */
+.panel-lista {
+  padding: 2.5rem 2.7rem 2rem 2.7rem;
+  display: flex; flex-direction: column; gap: 2.2rem;
+  position: relative;
+}
+
+/* ── Barra de filtros ─────────────────────────────────── */
+.filtros-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1.2rem;
+}
+.filtros-chips { display: flex; gap: 10px; }
+
+.filtro-chip {
+  padding: 8px 20px;
+  background: var(--bg-panel);
+  border: 1.5px solid var(--borde);
+  border-radius: 999px;
+  color: var(--texto-muted);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.93rem; font-weight: 700; cursor: pointer;
+  transition: all 0.14s;
+}
+.filtro-chip:hover { border-color: var(--borde-hover); color: var(--teal); background: var(--teal-dim);}
+.filtro-chip.activo {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: #fff;
+  box-shadow: 0 3px 14px var(--teal-dim);
+}
+
+/* ── Notificación flotante ────────────────────────────── */
+.notificacion {
+  display: flex; align-items: center; gap: 13px;
+  padding: 18px 30px;
+  background: linear-gradient(90deg, var(--teal-dim), #23263a 95%);
+  border: 1.5px solid var(--teal);
+  border-left: 5px solid var(--teal);
+  border-radius: var(--radio);
+  font-size: 1.02rem; font-weight: 700;
+  color: var(--teal);
+  animation: slideIn 0.35s ease-out;
+  box-shadow: 0 8px 32px rgba(129,140,248,0.11);
+  margin-bottom: 1rem;
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-20px) scale(0.96);}
+  to   { opacity: 1; transform: translateY(0) scale(1);}
+}
+
+/* ── Estado vacío ─────────────────────────────────────── */
+.estado-vacio {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 1.3rem;
+  padding: 7rem 2rem; text-align: center;
+  background: var(--bg-panel);
+  border-radius: 2.5rem;
+  border: 1.5px dashed var(--borde);
+  color: var(--texto-muted);
+}
+.vacio-icono { font-size: 4.5rem; opacity: 0.17; }
+.vacio-texto { color: var(--texto-dim); font-size: 1.12rem; line-height: 1.9; }
+
+/* ── Lista de tareas ──────────────────────────────────── */
+.lista-tareas {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 19px;
+}
+
+/* ── Tarjeta individual ──────────────────────────────── */
+.tarea-card {
+  background: var(--bg-card);
+  border: 1.5px solid var(--borde);
+  border-radius: var(--radio);
+  padding: 1.3rem 2.1rem;
+  display: flex; align-items: flex-start; gap: 1.4rem;
+  transition: all 0.18s;
+  animation: entrar 0.28s cubic-bezier(.55,.15,.56,.95) both;
+  position: relative;
+  overflow: visible;
+  box-shadow: 0 8px 26px rgba(129,140,248,0.07);
+}
+@keyframes entrar {
+  from { opacity: 0; transform: translateY(32px) scale(0.93);}
+  to   { opacity: 1; transform: translateY(0) scale(1);}
+}
+
+/* Línea de prioridad izquierda */
+.tarea-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0;
+  width: 6px; height: 100%;
+  background: var(--teal);
+  border-radius: 6px 0 0 6px;
+}
+.tarea-card.prioridad-alta::before  { background: var(--rojo); }
+.tarea-card.prioridad-baja::before  { background: var(--verde); }
+.tarea-card.prioridad-media::before { background: var(--amarillo); }
+
+.tarea-card:hover {
+  border-color: var(--teal);
+  background: var(--bg-hover);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 14px 42px 0 var(--teal-dim);
+}
+
+/* Tarea completada */
+.tarea-card.completada {
+  opacity: 0.32;
+  border-color: var(--borde);
+  background: #23263a;
+}
+.tarea-card.completada .tarea-desc {
+  text-decoration: line-through 2px;
+  color: var(--texto-muted);
+}
+
+/* Checkbox */
+.tarea-check {
+  width: 26px; height: 26px; min-width: 26px;
+  border: 2.5px solid var(--borde-hover);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.13s;
+  margin-top: 4px;
+  background: #23263a;
+}
+.tarea-check:hover { border-color: var(--teal); background: var(--teal-dim); }
+.tarea-check.marcado {
+  background: var(--verde);
+  border-color: var(--verde);
+  color: #fff; font-size: 1.18rem; font-weight: 900;
+  box-shadow: 0 2px 13px 0 #22c55e22;
+}
+
+/* Contenido */
+.tarea-contenido { flex: 1; min-width: 0; }
+
+.tarea-desc {
+  font-size: 1.02rem; font-weight: 700;
+  color: var(--texto); line-height: 1.8;
+  margin-bottom: 9px;
+  word-break: break-word;
+  letter-spacing: 0.03rem;
+}
+
+.tarea-meta {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  align-items: center;
+}
+
+/* Badges de metadatos */
+.badge {
+  padding: 4px 13px; border-radius: 8px;
+  font-size: 0.81rem; font-weight: 800;
+  letter-spacing: 0.7px;
+  background: #23263a;
+  border: 1px solid var(--borde);
+  color: var(--texto-dim);
+}
+.badge-prioridad-alta   { background: rgba(239,68,68,0.22); color: var(--rojo);}
+.badge-prioridad-media  { background: rgba(245,158,66,0.20);  color: var(--amarillo);}
+.badge-prioridad-baja   { background: rgba(34,197,94,0.18);  color: var(--verde);}
+.badge-fecha { background: rgba(129,140,248,0.13); color: var(--teal);}
+.badge-countdown {
+  background: rgba(239,68,68,0.13); color: var(--rojo);
+  font-variant-numeric: tabular-nums;
+}
+.badge-id { background: var(--bg); color: var(--texto-dim); border: 1px solid var(--borde); }
+
+/* Fecha de creación */
+.tarea-fecha-creacion {
+  font-size: 0.76rem; color: var(--texto-muted); margin-top: 7px; font-style: italic;
+}
+
+/* Acciones */
+.tarea-acciones {
+  display: flex; gap: 8px;
+  opacity: 0;
+  transition: opacity 0.18s;
+  margin-left: 12px;
+}
+.tarea-card:hover .tarea-acciones { opacity: 1; }
+
+.btn-accion {
+  width: 30px; height: 30px;
+  display: flex; align-items: center; justify-content: center;
+  background: transparent;
+  border: 1.5px solid var(--borde);
+  border-radius: 9px; cursor: pointer;
+  font-size: 1rem; color: var(--texto-dim);
+  transition: all 0.16s;
+}
+.btn-accion:hover { background: var(--bg-hover); border-color: var(--teal); color: var(--teal); }
+.btn-accion.eliminar:hover { background: rgba(239,68,68,0.17); border-color: var(--rojo); color: var(--rojo); }
+
+/* ── Utilidades ───────────────────────────────────────── */
+.hidden { display: none !important; }
+
+/* ── Responsive ───────────────────────────────────────── */
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; }
+  .panel-form {
+    position: static; height: auto;
+    border-right: none; border-bottom: 1.5px solid var(--borde);
+    box-shadow: 0 4px 32px rgba(0,0,0,0.09);
+  }
+  .topbar { padding: 1.1rem 0.7rem; }
+  .topbar-reloj { display: none; }
+  .panel-lista { padding: 1.45rem; }
+}
+@media (max-width: 600px) {
+  .topbar { flex-direction: column; gap: 1.6rem; padding: 0.8rem 0.3rem 0.9rem 0.7rem }
+  .panel-lista { padding: 0.45rem; }
+}

@@ -1,7 +1,4 @@
-# 📝 TaskFlow — Mi Gestor de Tareas Simple
-
-¡Hola! Este es un proyecto super junior-friendly para practicar JavaScript moderno, HTML y CSS oscura. Acá te cuento cómo funciona y para qué sirve cada archivo. ¡Ideal si querés aprender desde cero! 🚀
-
+# 📝 TaskFlow
 ---
 
 ## 📦 Archivos del Proyecto
@@ -24,7 +21,7 @@
 
 ---
 
-## 💡 ¿Qué podés aprender con este proyecto?
+## 💡 ¿Qué puedes aprender con este proyecto?
 
 - Cómo se usa JavaScript moderno (ES6+)
 - Clases y objetos (tranqui, está bien comentado)

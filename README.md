@@ -4,30 +4,30 @@
 ## 📦 Archivos del Proyecto
 
 - **index.html**  
-  Acá está la estructura básica de la página. Un formulario para agregar tareas y una lista donde las vas viendo.
+  Contiene la estructura principal de la página: un formulario para agregar tareas y una lista donde se visualizan.
 - **app.js**  
-  Todo el cerebro de la app: la lógica de agregar tareas, marcarlas como completadas, y hasta guardar en localStorage. Puro JavaScript, pero explicado fácil.
+  Incluye la lógica para agregar tareas, marcarlas como completadas y guardarlas en localStorage. Todo está implementado en JavaScript de manera sencilla y clara.
 - **style.css**  
-  El maquillaje. Tiene un tema oscuro moderno para que no te quemes los ojos 😉.
+  Define el diseño visual de la aplicación, con un tema oscuro moderno.
 
 ---
 
-## 👾 ¿Cómo lo uso?
+## 👾 ¿Cómo utilizarla?
 
-1. **Descargá o clonate** los archivos `index.html`, `app.js` y `style.css` en la misma carpeta.
-2. Abrí el `index.html` haciendo doble clic (¡no necesitás servidor!).
-3. Escribí una tarea en el formulario y dale al botón **Agregar Tarea**.
-4. Probá marcar tareas como hechas y borrarlas. ¡Todo se guarda automático!
+1. **Descarga o clona** los archivos `index.html`, `app.js` y `style.css` en una misma carpeta.
+2. Abre el archivo `index.html` con doble clic (no es necesario un servidor).
+3. Escribe una tarea en el formulario y haz clic en el botón **Agregar Tarea**.
+4. Puedes marcar las tareas como completadas o eliminarlas. Los cambios se guardan automáticamente.
 
 ---
 
-## 💡 ¿Qué puedes aprender con este proyecto?
+## 💡 ¿Qué se puede aprender con este proyecto?
 
-- Cómo se usa JavaScript moderno (ES6+)
-- Clases y objetos (tranqui, está bien comentado)
-- Eventos: responder a botones y formularios
-- Guardar cosas en el navegador con localStorage
-- Un poco de asincronía (simulamos carga con setTimeout)
+- Uso de JavaScript moderno (ES6+)
+- Clases y objetos, con código comentado para facilitar su comprensión
+- Manejo de eventos, como botones y formularios
+- Almacenamiento en el navegador utilizando localStorage
+- Nociones básicas de asincronía (por ejemplo, usando setTimeout)
 - Manipulación básica del DOM
 
 
